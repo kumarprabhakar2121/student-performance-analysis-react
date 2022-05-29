@@ -1,0 +1,4 @@
+1. List All Users
+
+sl no|  Name | phone | email | userRole | change userRole
+

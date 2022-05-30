@@ -15,6 +15,7 @@ import AdminSideBar from "./AdminSideBar";
 const ListMarks = () => {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState(false);
+  let count = 0;
 
   useEffect(() => {
     axios
@@ -22,8 +23,10 @@ const ListMarks = () => {
       .then((res) => {
         if (res.data.results.length > 0) {
           setPosts(res.data.results);
-
-          toast.success(`${res.data.total_count} mark found!`);
+          count++;
+          count == 1
+            ? toast.success(`${res.data.total_count} marks found!`)
+            : console.log();
         } else {
           alert("no mark found");
         }

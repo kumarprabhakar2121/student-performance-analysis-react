@@ -14,7 +14,7 @@ import AdminSideBar from "./AdminSideBar";
 
 const ListAllHod = () => {
   const [posts, setPosts] = useState([]);
-
+  let count = 0;
   useEffect(() => {
     axios
       .get("http://localhost:2108/user/list?userRole=hod")
@@ -22,10 +22,12 @@ const ListAllHod = () => {
         console.log(res.data);
         if (res.data.results.length > 0) {
           setPosts(res.data.results);
-
-          toast.success(`${res.data.total_count} users found!`);
+          count++;
+          count == 1
+            ? toast.success(`${res.data.total_count} hods found!`)
+            : console.log();
         } else {
-          alert("no hods found")
+          alert("no hods found");
         }
       })
       .catch((err) => {
@@ -37,17 +39,6 @@ const ListAllHod = () => {
   return (
     <>
       <div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
         {/* Same as */}
         <ToastContainer />
         <div className="container-fluid">
@@ -124,33 +115,6 @@ const ListAllHod = () => {
                             </tbody>
                           </table>
                         </div>
-                        <ul className="pagination pull-right">
-                          <li>
-                            <a href="#">
-                              <i className="fa fa-chevron-left"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">1</a>
-                          </li>
-                          <li>
-                            <a href="#">2</a>
-                          </li>
-                          <li>
-                            <a href="#">3</a>
-                          </li>
-                          <li>
-                            <a href="#">4</a>
-                          </li>
-                          <li>
-                            <a href="#">5</a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="fa fa-chevron-right"></i>
-                            </a>
-                          </li>
-                        </ul>
                       </div>
                     </div>
                   </div>

@@ -15,15 +15,17 @@ import AdminSideBar from "./AdminSideBar";
 const ListAllTeachers = () => {
   const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState(false);
-
+  let count = 0;
   useEffect(() => {
     axios
       .get("http://localhost:2108/user/list?userRole=teacher")
       .then((res) => {
         if (res.data.results.length > 0) {
           setPosts(res.data.results);
-
-          toast.success(`${res.data.total_count} teacher found!`);
+          count++;
+          count == 1
+            ? toast.success(`${res.data.total_count} teacher found!`)
+            : console.log();
         } else {
           alert("no teacher found");
         }
@@ -124,33 +126,6 @@ const ListAllTeachers = () => {
                             </tbody>
                           </table>
                         </div>
-                        <ul className="pagination pull-right">
-                          <li>
-                            <a href="#">
-                              <i className="fa fa-chevron-left"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">1</a>
-                          </li>
-                          <li>
-                            <a href="#">2</a>
-                          </li>
-                          <li>
-                            <a href="#">3</a>
-                          </li>
-                          <li>
-                            <a href="#">4</a>
-                          </li>
-                          <li>
-                            <a href="#">5</a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i className="fa fa-chevron-right"></i>
-                            </a>
-                          </li>
-                        </ul>
                       </div>
                     </div>
                   </div>

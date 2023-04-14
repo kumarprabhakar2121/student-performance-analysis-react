@@ -15,6 +15,7 @@ function UploadMarks() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("excel", file);
+    console.log({ formData });
     axios({
       method: "post",
       url: "http://localhost:2108/mark/",
